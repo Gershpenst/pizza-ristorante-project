@@ -8,7 +8,6 @@ import java.util.Set;
 import jakarta.persistence.*;
 
 
-/* Builder factory -- design pattern */
 @Entity(name = "Pizza")
 @Table(name = "Pizza")
 public class Pizza extends BaseEntity {

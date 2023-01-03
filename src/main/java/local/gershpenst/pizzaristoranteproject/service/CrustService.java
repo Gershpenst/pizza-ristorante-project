@@ -14,6 +14,8 @@ import local.gershpenst.pizzaristoranteproject.repository.CrustRepository;
 
 @Service
 public class CrustService {
+
+    private CrustService() {}
     
     public static List<Crust> getAllCrust(CrustRepository crustRepository) {
         return crustRepository.findAll();

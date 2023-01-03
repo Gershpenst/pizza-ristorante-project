@@ -13,6 +13,8 @@ import local.gershpenst.pizzaristoranteproject.repository.SauceRepository;
 
 @Service
 public class SauceService {
+
+    private SauceService() {}
     
     public static List<Sauce> getSauceService(SauceRepository sauceRepository) {
         return sauceRepository.findAll();
@@ -37,9 +39,9 @@ public class SauceService {
         sauceRepository.delete(sauce);
     }
 
-    public static String deleteSauce(SauceRepository sauceRepository, Long sauce_id) {
-        sauceRepository.deleteById(sauce_id);
-        return sauce_id + " has been deleted.";
+    public static String deleteSauce(SauceRepository sauceRepository, Long sauceId) {
+        sauceRepository.deleteById(sauceId);
+        return sauceId + " has been deleted.";
     }
 
     public static Sauce updateSauceService(SauceRepository sauceRepository, Long id, SauceConsumer sauceConsumer) {

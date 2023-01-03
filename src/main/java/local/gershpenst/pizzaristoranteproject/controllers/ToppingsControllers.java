@@ -2,7 +2,6 @@ package local.gershpenst.pizzaristoranteproject.controllers;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

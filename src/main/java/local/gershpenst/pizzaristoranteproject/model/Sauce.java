@@ -1,8 +1,7 @@
 package local.gershpenst.pizzaristoranteproject.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import local.gershpenst.pizzaristoranteproject.model.consumer.SauceConsumer;
 
 @Entity(name = "Sauce")

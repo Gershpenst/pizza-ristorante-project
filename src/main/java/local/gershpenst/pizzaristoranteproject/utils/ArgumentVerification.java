@@ -4,6 +4,8 @@ import java.util.function.Consumer;
 
 public class ArgumentVerification {
 
+    private ArgumentVerification() {}
+
     public static <T> void updateIfPresent(Consumer<T> consumer, T value) {
         if(value != null) {
             consumer.accept(value);

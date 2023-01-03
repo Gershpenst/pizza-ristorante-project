@@ -1,11 +1,7 @@
 package local.gershpenst.pizzaristoranteproject.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,8 +38,8 @@ public class CrustController {
     }
 
     @PostMapping({"", "/"})
-    public Crust addCrust(@Valid @RequestBody CrustConsumer crust_consumer) {
-        return CrustService.addCrustService(crustRepository, crust_consumer);
+    public Crust addCrust(@Valid @RequestBody CrustConsumer crustConsumer) {
+        return CrustService.addCrustService(crustRepository, crustConsumer);
     }
 
     @DeleteMapping("/{id}")
@@ -52,7 +48,7 @@ public class CrustController {
     }
 
     @PutMapping("/{id}")
-    public Crust putCrust(@PathVariable("id") Long id, @Valid @RequestBody CrustConsumer crust_consumer) {
-        return CrustService.updateCrust(crustRepository, id, crust_consumer);
+    public Crust putCrust(@PathVariable("id") Long id, @Valid @RequestBody CrustConsumer crustConsumer) {
+        return CrustService.updateCrust(crustRepository, id, crustConsumer);
     }
 }

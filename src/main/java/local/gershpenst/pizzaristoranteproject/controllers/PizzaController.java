@@ -1,7 +1,6 @@
 package local.gershpenst.pizzaristoranteproject.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,13 +49,13 @@ public class PizzaController {
     }
 
     @PostMapping({"", "/"})
-    public Pizza postPizza(@RequestBody PizzaConsumer pizza_consumer) {
-        return PizzaService.addPizza(pizzaRepository, doughRepository, crustRepository, sauceRepository, toppingsRepository, pizza_consumer);
+    public Pizza postPizza(@RequestBody PizzaConsumer pizzaConsumer) {
+        return PizzaService.addPizza(pizzaRepository, doughRepository, crustRepository, sauceRepository, toppingsRepository, pizzaConsumer);
     }
 
     @PutMapping("/{id}")
-    public Pizza updatePizza(@PathVariable("id") Long id, @RequestBody PizzaConsumer pizza_consumer) {
-        return PizzaService.updatePizza(id, pizza_consumer, pizzaRepository, doughRepository, crustRepository, sauceRepository, toppingsRepository);
+    public Pizza updatePizza(@PathVariable("id") Long id, @RequestBody PizzaConsumer pizzaConsumer) {
+        return PizzaService.updatePizza(id, pizzaConsumer, pizzaRepository, doughRepository, crustRepository, sauceRepository, toppingsRepository);
     }
 
     @DeleteMapping("/{id}")
