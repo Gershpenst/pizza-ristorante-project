@@ -3,6 +3,8 @@ package local.gershpenst.pizzaristoranteproject.service;
 import java.util.List;
 import java.util.Optional;
 
+import local.gershpenst.pizzaristoranteproject.exceptions.ConflictException;
+import local.gershpenst.pizzaristoranteproject.exceptions.NotFoundException;
 import local.gershpenst.pizzaristoranteproject.utils.ArgumentVerification;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +24,14 @@ public class CrustService {
     }
 
     public static Crust getCrustService(CrustRepository crustRepository, Long id) {
-        return crustRepository.findById(id).orElseThrow(() -> new ApiRequestException("The id " + id + " doesn't exists for crust."));
+        return crustRepository.findById(id).orElseThrow(() -> new NotFoundException("The id " + id + " doesn't exists for crust."));
     }
 
     public static Crust addCrustService(CrustRepository crustRepository, @Valid CrustConsumer crustConsumer) {
         String name = crustConsumer.name();
         getCrustByName(crustRepository, name).ifPresent(
                 msg -> {
-                    throw new ApiRequestException("The name " + name + " exists for crust.");
+                    throw new ConflictException("The name " + name + " exists for crust.");
                 }
         );
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import local.gershpenst.pizzaristoranteproject.exceptions.ApiRequestException;
+import local.gershpenst.pizzaristoranteproject.exceptions.ConflictException;
+import local.gershpenst.pizzaristoranteproject.exceptions.NotFoundException;
 import local.gershpenst.pizzaristoranteproject.utils.ArgumentVerification;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +23,14 @@ public class SauceService {
     }
 
     public static Sauce getSauceService(SauceRepository sauceRepository, Long id) {
-        return sauceRepository.findById(id).orElseThrow(() -> new ApiRequestException("The id " + id + " doesn't exists for sauce."));
+        return sauceRepository.findById(id).orElseThrow(() -> new NotFoundException("The id " + id + " doesn't exists for sauce."));
     }
 
     public static Sauce addSauceService(SauceRepository sauceRepository, SauceConsumer sauceConsumer) {
         String name = sauceConsumer.name();
         getSauceByName(sauceRepository, name).ifPresent(
                 msg -> {
-                    throw new ApiRequestException("The name " + name + " exists for sauce.");
+                    throw new ConflictException("The name " + name + " exists for sauce.");
                 }
         );
 

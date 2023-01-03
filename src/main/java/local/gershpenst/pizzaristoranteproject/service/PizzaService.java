@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import local.gershpenst.pizzaristoranteproject.exceptions.ApiRequestException;
+import local.gershpenst.pizzaristoranteproject.exceptions.ConflictException;
+import local.gershpenst.pizzaristoranteproject.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import local.gershpenst.pizzaristoranteproject.model.Crust;
@@ -28,7 +30,7 @@ public class PizzaService {
     }
 
     public static Pizza getPizza(PizzaRepository pizzaRepository, Long id) {
-        return pizzaRepository.findById(id).orElseThrow(() -> new ApiRequestException("The id " + id + " doesn't exists for Pizza."));
+        return pizzaRepository.findById(id).orElseThrow(() -> new NotFoundException("The id " + id + " doesn't exists for Pizza."));
     }
 
     private static Pizza createPizzaObject(DoughRepository doughRepository,
@@ -62,7 +64,7 @@ public class PizzaService {
         String name = pizzaConsumer.name();
         findPizzaById(pizzaRepository, name).ifPresent(
                 msg -> {
-                    throw new ApiRequestException("The name " + name + " exists for pizza.");
+                    throw new ConflictException("The name " + name + " exists for pizza.");
                 }
         );
         

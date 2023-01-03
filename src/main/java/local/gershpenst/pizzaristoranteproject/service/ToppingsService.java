@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import local.gershpenst.pizzaristoranteproject.exceptions.ApiRequestException;
+import local.gershpenst.pizzaristoranteproject.exceptions.ConflictException;
+import local.gershpenst.pizzaristoranteproject.exceptions.NotFoundException;
 import local.gershpenst.pizzaristoranteproject.utils.ArgumentVerification;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class ToppingsService {
     }
 
     public static Toppings getToppings(ToppingsRepository toppingsRepository, Long id) {
-        return toppingsRepository.findById(id).orElseThrow(() -> new ApiRequestException("The id " + id + " doesn't exists for toppings."));
+        return toppingsRepository.findById(id).orElseThrow(() -> new NotFoundException("The id " + id + " doesn't exists for toppings."));
     }
 
     public static Toppings addToppings(ToppingsRepository toppingsRepository, ToppingsConsumer toppingConsumer) {
@@ -31,7 +33,7 @@ public class ToppingsService {
         System.out.println("topping : " + topping);
 
         topping.ifPresent(s -> {
-            throw new ApiRequestException("The name " + name + " exists for toppings.");
+            throw new ConflictException("The name " + name + " exists for toppings.");
         });
 
         return toppingsRepository.save(new Toppings(
