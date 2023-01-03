@@ -46,13 +46,13 @@ public class ToppingsControllers {
     }
 
     @PostMapping({"", "/"})
-    public Toppings addTopping(@RequestBody ToppingsConsumer topping_consumer) {
-        return ToppingsService.addToppings(toppingsRepository, topping_consumer);
+    public Toppings addTopping(@RequestBody ToppingsConsumer toppingConsumer) {
+        return ToppingsService.addToppings(toppingsRepository, toppingConsumer);
     }
 
     @PutMapping("/{id}")
-    public Toppings updateToppings(@PathVariable("id") Long id, @RequestBody ToppingsConsumer topping_consumer) {
-        return ToppingsService.updateToppings(toppingsRepository, id, topping_consumer);
+    public Toppings updateToppings(@PathVariable("id") Long id, @RequestBody ToppingsConsumer toppingConsumer) {
+        return ToppingsService.updateToppings(toppingsRepository, id, toppingConsumer);
     }
 
     @DeleteMapping("/{id}")

@@ -8,4 +8,4 @@ public record DoughConsumer(@NotNull(message = "name cannot be null.")
                             String name, 
                             
                             @NotNull(message = "price cannot be null.")
-                            Double price) {}
+                            Double price) implements BaseConsumer {}

@@ -46,16 +46,6 @@ public class CrustController {
         return CrustService.addCrustService(crustRepository, crust_consumer);
     }
 
-
-    // @PostMapping({"", "/"})
-    // public ResponseEntity<Object> addCrust(@Valid @RequestBody CrustConsumer crust_consumer, Errors errors) {
-    //     if (errors.hasErrors()) {
-    //         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    //         // return new ResponseEntity<>(new ApiErrors(errors), HttpStatus.BAD_REQUEST);
-    //     }
-    //     return new ResponseEntity<>(CrustService.addCrustService(crustRepository, crust_consumer), HttpStatus.OK);
-    // }
-
     @DeleteMapping("/{id}")
     public void deleteCrust(@PathVariable("id") Long id) {
         CrustService.deleteCrust(crustRepository, id);

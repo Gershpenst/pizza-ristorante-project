@@ -1,34 +1,46 @@
 package local.gershpenst.pizzaristoranteproject.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.MappedSuperclass;
+import local.gershpenst.pizzaristoranteproject.model.consumer.BaseConsumer;
 
-// @Entity
+import java.util.Objects;
+
+@MappedSuperclass
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",
             nullable = false,
-            unique = true)
-    private Long id;
+            unique = true,
+            updatable = false)
+    protected Long id;
 
-    // @NotNull(message = "crust_name must not be null.")
-    // @NotEmpty(message = "crust_name must not be empty.")
-    // @Size(min = 2, max = 32, message = "crust_name must be between 2 and 32 characters long.")
     @Column(name = "name",
             nullable = false,
-            unique = true)
-    private String name;
+            unique = true,
+            length = 32)
+    protected String name;
 
-    // @NotNull(message = "price must not be null.")
-    // @Digits(integer = 3, fraction = 2, message = "Fractions must be 2 digits.")
-    // @DecimalMin(value = "0.0", inclusive = true, message = "price cannot be less than 0.0€.")
     @Column(name = "price",
-            nullable = false)
-    private Double price; 
+            nullable = false,
+            scale=2)
+    private Double price;
+
+    protected BaseEntity() {}
+
+    protected BaseEntity(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    protected BaseEntity(BaseConsumer consumer) {
+        this.name = consumer.name();
+        this.price = consumer.price();
+    }
 
     public Long getId() {
         return id;
@@ -47,5 +59,27 @@ public abstract class BaseEntity {
     }
     public void setPrice(Double price) {
         this.price = price;
-    }  
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseEntity that = (BaseEntity) o;
+        return Objects.equals(name, that.name) && Objects.equals(price, that.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price);
+    }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

@@ -14,4 +14,4 @@ public record CrustConsumer(@NotNull(message = "name must not be null.")
                             @NotNull(message = "price must not be null.")
                             @Digits(integer = 3, fraction = 2, message = "Fractions must be 2 digits.")
                             @DecimalMin(value = "0.0", inclusive = true, message = "price cannot be less than 0.0€.")
-                            Double price) {}
+                            Double price) implements BaseConsumer {}

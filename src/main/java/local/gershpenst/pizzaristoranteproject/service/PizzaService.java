@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import local.gershpenst.pizzaristoranteproject.exceptions.ApiRequestException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import local.gershpenst.pizzaristoranteproject.model.Crust;
@@ -39,23 +38,18 @@ public class PizzaService {
                                     PizzaConsumer pizzaConsumer) {
 
         String name = pizzaConsumer.name();
-        List<Toppings> toppings = ToppingsService.getToppingsByIdsService(toppingRepository, pizzaConsumer.toppings_id());
-        Crust crust = CrustService.getCrustService(crustRepository, pizzaConsumer.crust_id());
-        Dough dough = DoughService.getDoughByIdService(doughRepository, pizzaConsumer.dough_id());
-        Sauce sauce = SauceService.getSauceService(sauceRepository, pizzaConsumer.sauce_id());
+        List<Toppings> toppings = ToppingsService.getToppingsByIdsService(toppingRepository, pizzaConsumer.toppingsId());
+        Crust crust = CrustService.getCrustService(crustRepository, pizzaConsumer.crustId());
+        Dough dough = DoughService.getDoughByIdService(doughRepository, pizzaConsumer.doughId());
+        Sauce sauce = SauceService.getSauceService(sauceRepository, pizzaConsumer.sauceId());
 
-        System.out.println("name : " + name + "\ntoppings : " + toppings + "\ncrust : " + crust + "\ndough : " + dough + "\nsauce : " + sauce);
-
-        Pizza pizza = new Pizza()
-                .setName(name)
+        return new Pizza()
+                .setPizzaName(name)
                 .setCrust(crust)
                 .setSauce(sauce)
                 .setDough(dough)
                 .addToppingsAll(toppings)
                 .build();
-
-        System.out.println("Pizza : " + pizza);
-        return pizza;
     }
 
     public static Pizza addPizza(PizzaRepository pizzaRepository,
@@ -99,7 +93,7 @@ public class PizzaService {
             sauceRepository,
             toppingRepository,
             pizzaConsumer)
-        .setId(id);
+        .setPizzaId(id);
 
         return pizzaRepository.save(pizza);
     }

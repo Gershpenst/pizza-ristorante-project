@@ -1,5 +1,5 @@
 package local.gershpenst.pizzaristoranteproject.model.consumer;
 
-public record ToppingsConsumer(String name, Double price) {
+public record ToppingsConsumer(String name, Double price) implements BaseConsumer {
     
 }
