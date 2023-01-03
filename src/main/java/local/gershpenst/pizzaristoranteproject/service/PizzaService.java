@@ -3,7 +3,6 @@ package local.gershpenst.pizzaristoranteproject.service;
 import java.util.List;
 import java.util.Optional;
 
-import local.gershpenst.pizzaristoranteproject.exceptions.ApiRequestException;
 import local.gershpenst.pizzaristoranteproject.exceptions.ConflictException;
 import local.gershpenst.pizzaristoranteproject.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;

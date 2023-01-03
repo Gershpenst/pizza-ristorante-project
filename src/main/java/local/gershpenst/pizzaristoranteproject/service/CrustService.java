@@ -9,7 +9,6 @@ import local.gershpenst.pizzaristoranteproject.utils.ArgumentVerification;
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.Valid;
-import local.gershpenst.pizzaristoranteproject.exceptions.ApiRequestException;
 import local.gershpenst.pizzaristoranteproject.model.Crust;
 import local.gershpenst.pizzaristoranteproject.model.consumer.CrustConsumer;
 import local.gershpenst.pizzaristoranteproject.repository.CrustRepository;
